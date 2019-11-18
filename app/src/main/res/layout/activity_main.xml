@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -16,7 +17,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginTop="40dp"
             android:layout_marginRight="20dp"
-            android:hint="TODO"
+            android:hint="@string/todo"
             android:inputType="textCapSentences"
             android:textSize="30sp"
             android:textStyle="bold"
@@ -31,12 +32,26 @@
             android:layout_marginTop="40dp"
             android:layout_marginRight="20dp"
             android:gravity="top|start"
-            android:hint="type note"
+            android:hint="@string/type_note"
             android:inputType="textMultiLine"
             android:minLines="6"
             tools:ignore="Autofill" />
 
-    </RelativeLayout>
+        <com.thebluealliance.spectrum.SpectrumPalette
+            android:id="@+id/palette"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/note"
+            app:spectrum_autoPadding="true"
+            app:spectrum_colors="@array/demo_colors"
+            app:spectrum_outlineWidth="2dp" />
 
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="&#xA;    &lt;RelativeLayout" />
+
+    </RelativeLayout>
 
 </androidx.core.widget.NestedScrollView>

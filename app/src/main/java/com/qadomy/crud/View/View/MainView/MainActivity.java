@@ -64,16 +64,18 @@ public class MainActivity extends AppCompatActivity {
 
                 // check if empty
                 if (tTitel.isEmpty()) {
-                    title.setText("Please type a title !!");
-                    title.setTextColor(R.color.redColor);
+                    title.setHint("Please type a title !!");
 
                 } else if (tNote.isEmpty()) {
-                    note.setText("Please type a note !!");
-                    note.setTextColor(R.color.redColor);
+                    note.setHint("Please type a note !!");
+
+                } else {
+                    // save
+                    saveNote(tTitel, tNote, tColor);
                 }
-                // save
-                saveNote(tTitel, tNote, tColor);
+
                 return true;
+
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -95,10 +97,14 @@ public class MainActivity extends AppCompatActivity {
                 if (response.isSuccessful() && response.body() != null) {
                     Boolean success = response.body().getSuccess();
                     if (success) {
+                        Log.d(tag, "success yes");
+
                         Toast.makeText(MainActivity.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
                         finish(); // back to main activity
 
                     } else {
+                        Log.d(tag, "success no");
+
                         Toast.makeText(MainActivity.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
                     }
 
@@ -110,6 +116,7 @@ public class MainActivity extends AppCompatActivity {
             public void onFailure(@NonNull Call<Note> call, @NonNull Throwable t) {
                 progressDialog.dismiss();
                 Log.d(tag, "onFailure");
+                Log.d(tag, t.getLocalizedMessage());
 
                 Toast.makeText(MainActivity.this, t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
             }

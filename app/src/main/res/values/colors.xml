@@ -4,4 +4,20 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
     <color name="redColor">#FF0600</color>
+
+    <color name="white">#FFFFFF</color>
+    <color name="blue">#7ec4ed</color>
+    <color name="yellow">#FFEB3B</color>
+    <color name="pink">#EBA3BA</color>
+    <color name="green">#4CAF50</color>
+
+
+    <array name="demo_colors">
+        <item>@color/white</item>
+        <item>@color/blue</item>
+        <item>@color/yellow</item>
+        <item>@color/pink</item>
+        <item>@color/green</item>
+    </array>
+
 </resources>
