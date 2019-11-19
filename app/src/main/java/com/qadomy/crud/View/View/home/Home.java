@@ -1,4 +1,4 @@
-package com.qadomy.crud.View.View.MainView;
+package com.qadomy.crud.View.View.home;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,6 +8,7 @@ import android.view.View;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.qadomy.crud.R;
+import com.qadomy.crud.View.View.add.AddTodo_Activity;
 
 public class Home extends AppCompatActivity {
 
@@ -23,7 +24,7 @@ public class Home extends AppCompatActivity {
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Home.this, MainActivity.class);
+                Intent intent = new Intent(Home.this, AddTodo_Activity.class);
                 startActivity(intent);
             }
         });

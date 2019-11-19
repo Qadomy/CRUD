@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".View.View.MainView.MainActivity">
+    tools:context=".View.View.add.AddTodo_Activity">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -45,7 +45,6 @@
             app:spectrum_autoPadding="true"
             app:spectrum_colors="@array/demo_colors"
             app:spectrum_outlineWidth="2dp" />
-
 
     </RelativeLayout>
 
