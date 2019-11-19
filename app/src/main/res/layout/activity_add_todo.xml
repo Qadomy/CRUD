@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".View.View.add.AddTodo_Activity">
+    tools:context=".View.View.Add.AddTodo_Activity">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <EditText
-            android:id="@+id/title"
+            android:id="@+id/tTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
@@ -24,10 +24,10 @@
             tools:ignore="Autofill" />
 
         <EditText
-            android:id="@+id/note"
+            android:id="@+id/tNote"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/title"
+            android:layout_below="@id/tTitle"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="40dp"
             android:layout_marginRight="20dp"
@@ -41,7 +41,7 @@
             android:id="@+id/palette"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/note"
+            android:layout_below="@id/tNote"
             app:spectrum_autoPadding="true"
             app:spectrum_colors="@array/demo_colors"
             app:spectrum_outlineWidth="2dp" />

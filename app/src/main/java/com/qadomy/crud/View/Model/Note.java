@@ -15,8 +15,8 @@ public class Note {
     @SerializedName("color")
     private int color;
     @Expose
-    @SerializedName("text")
-    private String text;
+    @SerializedName("note")
+    private String note;
     @Expose
     @SerializedName("date")
     private String date;
@@ -52,12 +52,12 @@ public class Note {
         this.color = color;
     }
 
-    public String getText() {
-        return text;
+    public String getNote() {
+        return note;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public void setNote(String note) {
+        this.note = note;
     }
 
     public String getDate() {

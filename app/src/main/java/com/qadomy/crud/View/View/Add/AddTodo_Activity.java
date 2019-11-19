@@ -1,4 +1,4 @@
-package com.qadomy.crud.View.View.add;
+package com.qadomy.crud.View.View.Add;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
@@ -32,8 +32,8 @@ public class AddTodo_Activity extends AppCompatActivity implements AddView {
         setContentView(R.layout.activity_add_todo);
         Log.d(tag, "onCreate");
 
-        title = (EditText) findViewById(R.id.title);
-        note = (EditText) findViewById(R.id.note);
+        title = (EditText) findViewById(R.id.tTitle);
+        note = (EditText) findViewById(R.id.tNote);
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Please wait .....");

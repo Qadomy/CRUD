@@ -1,4 +1,4 @@
-package com.qadomy.crud.View.View.add;
+package com.qadomy.crud.View.View.Add;
 
 import android.util.Log;
 
