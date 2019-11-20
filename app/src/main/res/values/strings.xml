@@ -3,4 +3,8 @@
     <string name="todo">TODO</string>
     <string name="type_note">type note</string>
     <string name="date">28 December 1993</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
+    <string name="update">Update</string>
+    <string name="save">Save</string>
 </resources>

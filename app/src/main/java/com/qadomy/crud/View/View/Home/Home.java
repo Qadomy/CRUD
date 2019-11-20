@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -22,16 +23,21 @@ import java.util.List;
 public class Home extends AppCompatActivity implements HomeView {
 
     private static final String tag = Home.class.getSimpleName();
+    private static final int INTENT_ADD = 100;
+    private static final int INTENT_Edit = 200;
+
     private FloatingActionButton floatingActionButton;
 
-    private SwipeRefreshLayout refreshLayout;
+    private SwipeRefreshLayout swipeRefreshLayout;
     private RecyclerView recyclerView;
+    private Toast previousToast;
 
     private HomePresenter presenter;
     private HomeAdapter adapter;
     private HomeAdapter.ItemClickListener itemClickListener;
 
     private List<Note> note;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,39 +57,65 @@ public class Home extends AppCompatActivity implements HomeView {
                 Log.d(tag, "onClickFloatingActionButton");
 
                 Intent intent = new Intent(Home.this, AddTodo_Activity.class);
-                startActivity(intent);
+                startActivityForResult(intent, INTENT_ADD);
             }
         });
 
-        refreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh);
+        swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh);
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
 
-        refreshLayout.setOnRefreshListener(
+        swipeRefreshLayout.setOnRefreshListener(
                 () -> presenter.getData()
         );
 
         itemClickListener = ((view, position) -> {
+
+            // send the current data to ADD activity to edit it
+            int id = note.get(position).getId();
+            int color = note.get(position).getColor();
             String title = note.get(position).getTitle();
-            Toast.makeText(this, title, Toast.LENGTH_SHORT).show();
+            String notes = note.get(position).getNote();
+
+            Intent intent = new Intent(this, AddTodo_Activity.class);
+            intent.putExtra("id", id);
+            intent.putExtra("color", color);
+            intent.putExtra("title", title);
+            intent.putExtra("note", notes);
+
+            startActivityForResult(intent, INTENT_Edit);
         });
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == INTENT_ADD && resultCode == RESULT_OK) {
+            presenter.getData();
+        } else if (requestCode == INTENT_Edit && resultCode == RESULT_OK) {
+            presenter.getData();
+        }
+    }
 
     // methods when implement the Home View interface
     @Override
     public void showLoading() {
         Log.d(tag, "showLoading");
 
-        refreshLayout.setRefreshing(true);
+        if (swipeRefreshLayout != null) {
+            swipeRefreshLayout.setRefreshing(true);
+        }
     }
 
     @Override
     public void hideLoading() {
         Log.d(tag, "hideLoading");
 
-        refreshLayout.setRefreshing(false);
+        if (swipeRefreshLayout != null) {
+            swipeRefreshLayout.setRefreshing(false);
+        }
     }
 
     @Override
@@ -101,6 +133,18 @@ public class Home extends AppCompatActivity implements HomeView {
     public void onErrorLoading(String message) {
         Log.d(tag, "onErrorLoading");
 
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+        showMessage(message);
+    }
+
+    // method for display the Toast message
+    private void showMessage(String message) {
+        Toast toast = Toast.makeText(this, message, Toast.LENGTH_SHORT);
+        toast.show();
+
+        // hide the previous toast message
+        if (previousToast != null) {
+            previousToast.cancel();
+        }
+        previousToast = toast;
     }
 }
