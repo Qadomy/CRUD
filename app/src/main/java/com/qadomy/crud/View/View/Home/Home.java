@@ -51,14 +51,11 @@ public class Home extends AppCompatActivity implements HomeView {
 
         // when click on Add button
         floatingActionButton = findViewById(R.id.add);
-        floatingActionButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d(tag, "onClickFloatingActionButton");
+        floatingActionButton.setOnClickListener(v -> {
+            Log.d(tag, "onClickFloatingActionButton");
 
-                Intent intent = new Intent(Home.this, AddTodo_Activity.class);
-                startActivityForResult(intent, INTENT_ADD);
-            }
+            Intent intent = new Intent(Home.this, AddTodo_Activity.class);
+            startActivityForResult(intent, INTENT_ADD);
         });
 
         swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh);
@@ -86,7 +83,7 @@ public class Home extends AppCompatActivity implements HomeView {
 
             startActivityForResult(intent, INTENT_Edit);
         });
-    }
+    }// end of onCreate
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {

@@ -52,12 +52,12 @@ public class AddTodo_Activity extends AppCompatActivity implements AddView {
             }
         });
 
-
         // init AddPresenter
         presenter = new AddPresenter(this);
 
         // get intent from Home activity
         getIntentFromHomeActivity();
+        // set the data in the views
         setDataFromIntentExtra();
 
     }// end of onCreate
@@ -113,6 +113,7 @@ public class AddTodo_Activity extends AppCompatActivity implements AddView {
                 return true;
 
             case R.id.edit:
+                Log.d(tag, "edit menu");
 
                 editMode();
                 actionMenu.findItem(R.id.save).setVisible(false);
@@ -123,6 +124,7 @@ public class AddTodo_Activity extends AppCompatActivity implements AddView {
                 return true;
 
             case R.id.delete:
+                Log.d(tag, "delete menu");
 
                 // display an Alert Dialog to confirm the delete of note
                 AlertDialog.Builder alertdialog = new AlertDialog.Builder(this);
@@ -140,6 +142,7 @@ public class AddTodo_Activity extends AppCompatActivity implements AddView {
                 return true;
 
             case R.id.update:
+                Log.d(tag, "update menu");
 
                 // check if empty
                 if (tTitel.isEmpty()) {
@@ -156,6 +159,7 @@ public class AddTodo_Activity extends AppCompatActivity implements AddView {
                 return true;
 
             default:
+
                 return super.onOptionsItemSelected(item);
         }
     }

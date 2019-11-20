@@ -100,25 +100,25 @@ public class AddPresenter {
     }
 
     // method for delete the note from server
-    void deleteNote(int id){
+    void deleteNote(int id) {
         Log.d(tag, "deleteNote");
 
         view.showProgress();
-        ApiInterface  apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
-        Call<Note> call = apiInterface.deleteNote( id);
+        ApiInterface apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
+        Call<Note> call = apiInterface.deleteNote(id);
         call.enqueue(new Callback<Note>() {
             @Override
             public void onResponse(@NonNull Call<Note> call, @NonNull Response<Note> response) {
                 Log.d(tag, "onResponse");
 
-                if (response.isSuccessful()&&response.body()!=null){
+                if (response.isSuccessful() && response.body() != null) {
                     Boolean success = response.body().getSuccess();
-                    if (success){
+                    if (success) {
                         Log.d(tag, "onResponse: success");
 
                         view.onRequestSuccess(response.body().getMessage());
 
-                    }else{
+                    } else {
                         Log.d(tag, "onResponse: failed");
 
                         view.onRequestError(response.body().getMessage());
